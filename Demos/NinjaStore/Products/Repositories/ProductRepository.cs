@@ -67,6 +67,14 @@ namespace Products.Repositories
             return query.FirstOrDefault();
         }
 
+        public async Task<bool> CreateProduct(Product product)
+        {
+            var documentUri = UriFactory.CreateDocumentUri(_documentDbSettings.DatabaseId, _documentDbSettings.CollectionId, product.ProductId);
+            await _documentClient.CreateDocumentAsync(documentUri, product);
+
+            return true;
+        }
+
         #endregion
 
         #region Properties
