@@ -42,14 +42,14 @@ namespace Products.Repositories
             await CreateDatabaseIfNotExistsAsync();
             await CreateCollectionIfNotExistsAsync();
 
-            var product1 = new Product() { Id = "1", Count = 5, Name = "Ninja Stars", Price = 5.99};
-            CreateProductDocumentIfNotExists(product1).Wait();
+            var ninjaStar = new Product() { Id = "1", Count = 5, Name = "Ninja Stars", Price = 5.99};
+            CreateProductDocumentIfNotExists(ninjaStar).Wait();
 
-            var product2 = new Product() { Id = "2", Count = 12, Name = "Sword", Price = 199.99 };
-            CreateProductDocumentIfNotExists(product2).Wait();
+            var sword = new Product() { Id = "2", Count = 12, Name = "Sword", Price = 199.99 };
+            CreateProductDocumentIfNotExists(sword).Wait();
 
-            var product3 = new Product() { Id = "3", Count = 12, Name = "Nunchucks", Price = 24.79 };
-            CreateProductDocumentIfNotExists(product3).Wait();
+            var nunchucks = new Product() { Id = "3", Count = 12, Name = "Nunchucks", Price = 24.79 };
+            CreateProductDocumentIfNotExists(nunchucks).Wait();
         }
 
         #endregion
