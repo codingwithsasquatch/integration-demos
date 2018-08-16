@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,6 +52,18 @@ namespace Products.Repositories
             var nunchucks = new Product() { Id = "3", Count = 12, Name = "Nunchucks", Price = 24.79 };
             CreateProductDocumentIfNotExists(nunchucks).Wait();
         }
+
+        public List<Product> GetAllProducts()
+        {
+            var results = _documentClient.CreateDocumentQuery<Product>(this.CollectionUri);
+            return results.ToList();
+        }
+
+        #endregion
+
+        #region Properties
+
+        private Uri CollectionUri => UriFactory.CreateDocumentCollectionUri(_documentDbSettings.DatabaseId, _documentDbSettings.CollectionId);
 
         #endregion
 
