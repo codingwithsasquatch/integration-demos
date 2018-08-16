@@ -59,6 +59,14 @@ namespace Products.Repositories
             return results.ToList();
         }
 
+        public Product GetProductById(string productId)
+        {
+            var queryOptions = new FeedOptions { MaxItemCount = -1 };
+            var query = _documentClient.CreateDocumentQuery<Product>(this.CollectionUri, queryOptions)
+                .Where(p => p.Id.ToLower() == productId.ToLower()).ToList();
+            return query.FirstOrDefault();
+        }
+
         #endregion
 
         #region Properties
