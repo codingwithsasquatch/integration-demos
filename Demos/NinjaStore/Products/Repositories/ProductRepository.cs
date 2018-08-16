@@ -43,13 +43,13 @@ namespace Products.Repositories
             await CreateDatabaseIfNotExistsAsync();
             await CreateCollectionIfNotExistsAsync();
 
-            var ninjaStar = new Product() { Id = "1", Count = 5, Name = "Ninja Stars", Price = 5.99};
+            var ninjaStar = new Product() { ProductId = "1", Count = 5, Name = "Ninja Stars", Price = 5.99};
             CreateProductDocumentIfNotExists(ninjaStar).Wait();
 
-            var sword = new Product() { Id = "2", Count = 12, Name = "Sword", Price = 199.99 };
+            var sword = new Product() { ProductId = "2", Count = 12, Name = "Sword", Price = 199.99 };
             CreateProductDocumentIfNotExists(sword).Wait();
 
-            var nunchucks = new Product() { Id = "3", Count = 12, Name = "Nunchucks", Price = 24.79 };
+            var nunchucks = new Product() { ProductId = "3", Count = 12, Name = "Nunchucks", Price = 24.79 };
             CreateProductDocumentIfNotExists(nunchucks).Wait();
         }
 
@@ -63,7 +63,7 @@ namespace Products.Repositories
         {
             var queryOptions = new FeedOptions { MaxItemCount = -1 };
             var query = _documentClient.CreateDocumentQuery<Product>(this.CollectionUri, queryOptions)
-                .Where(p => p.Id.ToLower() == productId.ToLower()).ToList();
+                .Where(p => p.ProductId.ToLower() == productId.ToLower()).ToList();
             return query.FirstOrDefault();
         }
 
@@ -125,7 +125,7 @@ namespace Products.Repositories
         {
             try
             {
-                var documentUri = UriFactory.CreateDocumentUri(_documentDbSettings.DatabaseId, _documentDbSettings.CollectionId, product.Id);
+                var documentUri = UriFactory.CreateDocumentUri(_documentDbSettings.DatabaseId, _documentDbSettings.CollectionId, product.ProductId);
                 await _documentClient.ReadDocumentAsync(documentUri);
             }
             catch (DocumentClientException de)

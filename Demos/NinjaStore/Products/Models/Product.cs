@@ -8,7 +8,7 @@ namespace Products.Models
     {
         #region Properties
 
-        public string Id { get; set; }
+        public string ProductId { get; set; }
 
         public string Name { get; set; }
 
