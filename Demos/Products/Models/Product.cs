@@ -8,13 +8,13 @@ namespace Products.Models
     {
         #region Properties
 
-        public int ProductId { get; set; }
+        public string Id { get; set; }
 
         public string Name { get; set; }
 
         public int Count { get; set; }
 
-        public decimal Price { get; set; }
+        public double Price { get; set; }
 
         #endregion
     }
