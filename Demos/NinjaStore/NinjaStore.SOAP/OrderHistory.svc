@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="NinjaStore.SOAP.Service1" CodeBehind="OrderHistory.svc.cs" %>

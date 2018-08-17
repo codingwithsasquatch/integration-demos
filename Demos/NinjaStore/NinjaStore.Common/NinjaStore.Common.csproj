@@ -5,8 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="Repositories\" />
+    <PackageReference Include="Microsoft.Azure.DocumentDB.Core" Version="2.0.0-preview2" />
   </ItemGroup>
 
 </Project>
