@@ -6,8 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
+using NinjaStore.Common.Models;
 
-namespace NinjaStore.Common
+namespace NinjaStore.Common.Repositories
 {
     public class OrderRepository
     {

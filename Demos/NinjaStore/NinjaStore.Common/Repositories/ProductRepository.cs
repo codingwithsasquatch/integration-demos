@@ -6,10 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
+using NinjaStore.Common.Models;
 
-namespace NinjaStore.Common
+namespace NinjaStore.Common.Repositories
 {
-    internal class ProductRepository
+    public class ProductRepository
     {
         #region Data Members
 
@@ -20,7 +21,7 @@ namespace NinjaStore.Common
 
         #region Constructors
 
-        internal ProductRepository(DocumentDbSettings settings)
+        public ProductRepository(DocumentDbSettings settings)
         {
             // Save the document db settings into a private data member and 
             // instantiate an instance of the client.
@@ -66,12 +67,10 @@ namespace NinjaStore.Common
             return query.FirstOrDefault();
         }
 
-        public async Task<bool> CreateProduct(Product product)
+        public async Task CreateProduct(Product product)
         {
             var documentUri = UriFactory.CreateDocumentUri(_documentDbSettings.DatabaseId, _documentDbSettings.CollectionId, product.ProductId);
-            await _documentClient.CreateDocumentAsync(documentUri, product);
-
-            return true;
+            await _documentClient.CreateDocumentAsync(this.CollectionUri, product);
         }
 
         #endregion

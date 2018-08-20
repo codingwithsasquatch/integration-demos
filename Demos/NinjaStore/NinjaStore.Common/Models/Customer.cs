@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NinjaStore.Common
+namespace NinjaStore.Common.Models
 {
     public class Customer
     {

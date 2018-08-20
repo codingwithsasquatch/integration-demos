@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Azure.WebJobs.Host;
 using Newtonsoft.Json;
 using Microsoft.Extensions.Logging;
-using Products.Repositories;
+using NinjaStore.Common.Repositories;
 
 namespace Products
 {
