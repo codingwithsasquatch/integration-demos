@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="9ce28a25-5cbf-47bd-b0e4-2cb7d850e716" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:57840/OrderHistory.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="OrderHistory.wsdl" MetadataType="Wsdl" ID="93fefe84-0138-4f28-b130-eef5a7142983" SourceId="1" SourceUrl="http://localhost:57840/OrderHistory.svc?wsdl" />
+    <MetadataFile FileName="OrderHistory.disco" MetadataType="Disco" ID="fa7e0628-8af4-4371-99c1-b011a7877d4a" SourceId="1" SourceUrl="http://localhost:57840/OrderHistory.svc?disco" />
+    <MetadataFile FileName="OrderHistory.xsd" MetadataType="Schema" ID="ffbed7e4-a65c-44f3-8cb5-121dd1f29350" SourceId="1" SourceUrl="http://localhost:57840/OrderHistory.svc?xsd=xsd2" />
+    <MetadataFile FileName="OrderHistory1.xsd" MetadataType="Schema" ID="3883e69d-b865-486f-90b0-b89f7020e386" SourceId="1" SourceUrl="http://localhost:57840/OrderHistory.svc?xsd=xsd1" />
+    <MetadataFile FileName="OrderHistory2.xsd" MetadataType="Schema" ID="a607776b-f540-413d-89a5-20898d7b8567" SourceId="1" SourceUrl="http://localhost:57840/OrderHistory.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -9,7 +9,7 @@ using Microsoft.Azure.Documents.Client;
 
 namespace NinjaStore.Common
 {
-    internal class OrderRepository
+    public class OrderRepository
     {
         #region Data Members
 
@@ -43,17 +43,17 @@ namespace NinjaStore.Common
             await CreateCollectionIfNotExistsAsync();
 
             var ninjaStar = new Product() { ProductId = "1", Count = 5, Name = "Ninja Stars", Price = 5.99 };
-            var cust1 = new Customer() { CustomerId = "1", CustomerName = "Awesome Dojo", CustomerLocation = "CA" };
-            var starOrder = new Order() { OrderId = "1", Quantity = 3, Product=ninjaStar, Customer= cust1 };
+            var cust1 = new Customer() { CustomerId = 1, CustomerName = "Awesome Dojo", CustomerLocation = "CA" };
+            var starOrder = new Order() { OrderId = 1, Quantity = 3, Product=ninjaStar, Customer= cust1 };
             CreateOrderDocumentIfNotExists(starOrder).Wait();
 
             var sword = new Product() { ProductId = "2", Count = 12, Name = "Sword", Price = 199.99 };
-            var cust2 = new Customer() { CustomerId = "2", CustomerName = "Best Dojo Ever", CustomerLocation = "IN" };
-            var swordOrder = new Order() { OrderId = "2", Quantity = 5, Product = sword, Customer = cust2 };
+            var cust2 = new Customer() { CustomerId = 2, CustomerName = "Best Dojo Ever", CustomerLocation = "IN" };
+            var swordOrder = new Order() { OrderId = 2, Quantity = 5, Product = sword, Customer = cust2 };
             CreateOrderDocumentIfNotExists(swordOrder).Wait();
 
             var nunchucks = new Product() { ProductId = "3", Count = 12, Name = "Nunchucks", Price = 24.79 };
-            var nunchuckOrder = new Order() { OrderId = "3", Quantity = 5, Product = nunchucks, Customer = cust1 };
+            var nunchuckOrder = new Order() { OrderId = 3, Quantity = 5, Product = nunchucks, Customer = cust1 };
             CreateOrderDocumentIfNotExists(nunchuckOrder).Wait();
         }
 
@@ -63,11 +63,11 @@ namespace NinjaStore.Common
             return results.ToList();
         }
 
-        public Order GetOrderByOrderId(string orderId)
+        public Order GetOrderByOrderId(int orderId)
         {
             var queryOptions = new FeedOptions { MaxItemCount = -1 };
             var query = _documentClient.CreateDocumentQuery<Order>(this.CollectionUri, queryOptions)
-                .Where(o => o.OrderId.ToLower() == orderId.ToLower()).ToList();
+                .Where(o => o.OrderId == orderId).ToList();
             return query.FirstOrDefault();
         }
 
@@ -79,11 +79,11 @@ namespace NinjaStore.Common
             return query.ToList();
         }
 
-        public List<Order> GetOrdersByCustomertId(string customerId)
+        public List<Order> GetOrdersByCustomerId(int customerId)
         {
             var queryOptions = new FeedOptions { MaxItemCount = -1 };
             var query = _documentClient.CreateDocumentQuery<Order>(this.CollectionUri, queryOptions)
-                .Where(o => o.Customer.CustomerId.ToLower() == customerId.ToLower()).ToList();
+                .Where(o => o.Customer.CustomerId == customerId).ToList();
             return query.ToList();
         }
 
@@ -145,7 +145,7 @@ namespace NinjaStore.Common
         {
             try
             {
-                var documentUri = UriFactory.CreateDocumentUri(_documentDbSettings.DatabaseId, _documentDbSettings.CollectionId, order.OrderId);
+                var documentUri = UriFactory.CreateDocumentUri(_documentDbSettings.DatabaseId, _documentDbSettings.CollectionId, order.OrderId.ToString());
                 await _documentClient.ReadDocumentAsync(documentUri);
             }
             catch (DocumentClientException de)

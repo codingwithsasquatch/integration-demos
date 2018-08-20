@@ -8,9 +8,8 @@ using System.Text;
 
 namespace NinjaStore.SOAP
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
     [ServiceContract]
-    public interface Orders
+    public interface IOrders
     {
 
         [OperationContract]
@@ -20,7 +19,7 @@ namespace NinjaStore.SOAP
         Order GetOrderbyOrderID(int OrderId);
 
         [OperationContract]
-        List<Order> GetOrdersbyProductID(int ProductId);
+        List<Order> GetOrdersbyProductID(string ProductId);
 
         [OperationContract]
         List<Order> GetOrdersbyCustomerID(int CustomersId);
@@ -29,8 +28,8 @@ namespace NinjaStore.SOAP
 
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
-    [DataContract]
-    public class Order
+   [DataContract]
+    public class Order 
     {
         int _orderID;
         Customer _customer;
@@ -38,7 +37,8 @@ namespace NinjaStore.SOAP
         int _quantity;
         double _total;
 
-        public int OrderID
+        [DataMember]
+        public int OrderId
         {
             get { return _orderID; }
             set { _orderID = value; }
@@ -107,12 +107,12 @@ namespace NinjaStore.SOAP
     [DataContract]
     public class Product
     {
-        int _productID;
+        string _productID;
         string _productName;
         double _price;
 
         [DataMember]
-        public int ProductId
+        public string ProductId
         {
             get { return _productID; }
             set { _productID = value; }

@@ -12,7 +12,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NinjaStore.SOAP</RootNamespace>
     <AssemblyName>NinjaStore.SOAP</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -115,6 +115,12 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NinjaStore.Common\NinjaStore.Common.csproj">
+      <Project>{a664a876-00bf-4b6c-9706-141e169423dc}</Project>
+      <Name>NinjaStore.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

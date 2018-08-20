@@ -11,5 +11,8 @@ namespace NinjaStore.Tests
             Console.WriteLine("Press <enter> to exit.");
             Console.ReadLine();
         }
+
+        
+
     }
 }

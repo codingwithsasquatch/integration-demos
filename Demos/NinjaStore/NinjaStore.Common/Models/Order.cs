@@ -8,7 +8,7 @@ namespace NinjaStore.Common
     {
         #region Properties
 
-        public string OrderId { get; set; }
+        public int OrderId { get; set; }
 
         public Customer Customer { get; set; }
 
