@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NinjaStore.Common
+namespace NinjaStore.Common.Models
 {
     internal class DocumentDbSettings
     {
