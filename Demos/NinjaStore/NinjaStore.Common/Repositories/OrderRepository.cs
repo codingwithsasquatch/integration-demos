@@ -76,7 +76,7 @@ namespace NinjaStore.Common.Repositories
         {
             var queryOptions = new FeedOptions { MaxItemCount = -1 };
             var query = _documentClient.CreateDocumentQuery<Order>(this.CollectionUri, queryOptions)
-                .Where(o => o.Product.ProductId.ToLower() == productId.ToLower()).ToList();
+                .Where(o => o.Product.ProductId.Equals(productId, StringComparison.OrdinalIgnoreCase)).ToList();
             return query.ToList();
         }
 
