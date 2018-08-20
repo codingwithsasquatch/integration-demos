@@ -25,9 +25,9 @@ namespace Products
             var input = JsonConvert.DeserializeObject<Product>(requestBody);
 
             var repository = new ProductRepository();
-            var result = repository.CreateProduct(input);
+            await repository.CreateProduct(input);
 
-            return new OkObjectResult(result);
+            return new OkObjectResult(input);
         }
     }
 }

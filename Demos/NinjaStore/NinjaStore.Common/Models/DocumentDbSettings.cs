@@ -2,7 +2,7 @@
 
 namespace NinjaStore.Common.Models
 {
-    internal class DocumentDbSettings
+    public class DocumentDbSettings
     {
         #region Properties
 
