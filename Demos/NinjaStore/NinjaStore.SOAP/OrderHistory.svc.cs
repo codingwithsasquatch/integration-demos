@@ -9,6 +9,7 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using NinjaStore.Common;
+using NinjaStore.Common.Repositories;
 
 namespace NinjaStore.SOAP
 {
@@ -48,10 +49,10 @@ namespace NinjaStore.SOAP
 
         #region Private Methods
 
-        private List<Order> ConvertOrders(List<Common.Order> commonorders)
+        private List<Order> ConvertOrders(List<Common.Models.Order> commonorders)
         {
             List<Order> orders = new List<Order>();
-            foreach (Common.Order o in commonorders)
+            foreach (Common.Models.Order o in commonorders)
             {
                 Order order = ConvertOrder(o);
                 orders.Add(order);
@@ -60,7 +61,7 @@ namespace NinjaStore.SOAP
             return orders;
         }
 
-        private Order ConvertOrder(Common.Order commonorder)
+        private Order ConvertOrder(Common.Models.Order commonorder)
         {
             Customer customer = new Customer()
             {

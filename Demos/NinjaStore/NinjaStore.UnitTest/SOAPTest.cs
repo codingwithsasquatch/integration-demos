@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NinjaStore.Common;
+using NinjaStore.Common.Models;
+using NinjaStore.Common.Repositories;
 
 namespace NinjaStore.UnitTest
 {
