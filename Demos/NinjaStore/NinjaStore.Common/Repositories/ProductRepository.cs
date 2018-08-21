@@ -70,9 +70,14 @@ namespace NinjaStore.Common.Repositories
         }
 
         public async Task CreateProduct(Product product)
-        {
-            var documentUri = UriFactory.CreateDocumentUri(_documentDbSettings.DatabaseId, _documentDbSettings.CollectionId, product.Id);
+        {            
             await _documentClient.CreateDocumentAsync(this.CollectionUri, product);
+        }
+
+        public async Task DeleteProduct(string id)
+        {
+            await _documentClient.DeleteDocumentAsync(UriFactory.CreateDocumentUri(_documentDbSettings.DatabaseId,
+                _documentDbSettings.CollectionId, id));
         }
 
         #endregion
