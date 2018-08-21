@@ -45,16 +45,16 @@ namespace NinjaStore.Common.Repositories
 
             var ninjaStar = new Product() { ProductId = "1", Count = 5, Name = "Ninja Stars", Price = 5.99 };
             var cust1 = new Customer() { CustomerId = 1, CustomerName = "Awesome Dojo", CustomerLocation = "CA" };
-            var starOrder = new Order() { OrderId = 1, Quantity = 3, Product=ninjaStar, Customer= cust1 };
+            var starOrder = new Order() { Id = 1, Quantity = 3, Product=ninjaStar, Customer= cust1 };
             CreateOrderDocumentIfNotExists(starOrder).Wait();
 
             var sword = new Product() { ProductId = "2", Count = 12, Name = "Sword", Price = 199.99 };
             var cust2 = new Customer() { CustomerId = 2, CustomerName = "Best Dojo Ever", CustomerLocation = "IN" };
-            var swordOrder = new Order() { OrderId = 2, Quantity = 5, Product = sword, Customer = cust2 };
+            var swordOrder = new Order() { Id = 2, Quantity = 5, Product = sword, Customer = cust2 };
             CreateOrderDocumentIfNotExists(swordOrder).Wait();
 
             var nunchucks = new Product() { ProductId = "3", Count = 12, Name = "Nunchucks", Price = 24.79 };
-            var nunchuckOrder = new Order() { OrderId = 3, Quantity = 5, Product = nunchucks, Customer = cust1 };
+            var nunchuckOrder = new Order() { Id = 3, Quantity = 5, Product = nunchucks, Customer = cust1 };
             CreateOrderDocumentIfNotExists(nunchuckOrder).Wait();
         }
 
@@ -68,7 +68,7 @@ namespace NinjaStore.Common.Repositories
         {
             var queryOptions = new FeedOptions { MaxItemCount = -1 };
             var query = _documentClient.CreateDocumentQuery<Order>(this.CollectionUri, queryOptions)
-                .Where(o => o.OrderId == orderId).ToList();
+                .Where(o => o.Id == orderId).ToList();
             return query.FirstOrDefault();
         }
 
@@ -146,7 +146,7 @@ namespace NinjaStore.Common.Repositories
         {
             try
             {
-                var documentUri = UriFactory.CreateDocumentUri(_documentDbSettings.DatabaseId, _documentDbSettings.CollectionId, order.OrderId.ToString());
+                var documentUri = UriFactory.CreateDocumentUri(_documentDbSettings.DatabaseId, _documentDbSettings.CollectionId, order.Id.ToString());
                 await _documentClient.ReadDocumentAsync(documentUri);
             }
             catch (DocumentClientException de)

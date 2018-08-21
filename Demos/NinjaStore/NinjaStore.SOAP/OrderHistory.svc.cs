@@ -1,6 +1,4 @@
-﻿using Microsoft.Azure.Documents;
-using Microsoft.Azure.Documents.Client;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -8,7 +6,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
-using NinjaStore.Common;
+using System.Threading.Tasks;
 using NinjaStore.Common.Repositories;
 
 namespace NinjaStore.SOAP
@@ -17,37 +15,54 @@ namespace NinjaStore.SOAP
     public class OrderHistory : IOrders
     {
 
+        private OrderRepository repo = null;
+
+        public OrderHistory() => Initialize();
+
         #region Public Methods
         public List<Order> GetAllOrders()
         {
-            var repo = new OrderRepository();
             return ConvertOrders(repo.GetAllOrders());
 
         }
 
         public Order GetOrderbyOrderID(int OrderId)
         {
-            var repo = new OrderRepository();
             return ConvertOrder(repo.GetOrderByOrderId(OrderId));
 
         }
 
         public List<Order> GetOrdersbyProductID(string ProductId)
         {
-            var repo = new OrderRepository();
             return ConvertOrders(repo.GetOrdersByProductId(ProductId));
 
         }
 
         public List<Order> GetOrdersbyCustomerID(int CustomerId)
         {
-            var repo = new OrderRepository();
             return ConvertOrders(repo.GetOrdersByCustomerId(customerId: CustomerId));
         }
 
         #endregion
 
         #region Private Methods
+
+        private void Initialize()
+        {
+            Environment.SetEnvironmentVariable("DocumentDbAuthKey", ConfigurationManager.AppSettings["AuthorizationKey"]);
+            Environment.SetEnvironmentVariable("DocumentDbEndpoint", ConfigurationManager.AppSettings["EndPointUrl"]);
+            Environment.SetEnvironmentVariable("DocumentDbDatabaseId", ConfigurationManager.AppSettings["DatabaseId"]);
+            Environment.SetEnvironmentVariable("DocumentDbCollectionId", ConfigurationManager.AppSettings["CollectionId"]);
+
+            repo = new OrderRepository();
+            InitializeRepo();
+        }
+
+        private async Task InitializeRepo()
+        {            
+            await repo.Initialize();
+        }
+
 
         private List<Order> ConvertOrders(List<Common.Models.Order> commonorders)
         {
@@ -79,7 +94,7 @@ namespace NinjaStore.SOAP
 
             Order order = new Order()
             {
-                OrderId = commonorder.OrderId,
+                OrderId = commonorder.Id,
                 Quantity = commonorder.Quantity,
                 Customer = customer,
                 Product = product,
