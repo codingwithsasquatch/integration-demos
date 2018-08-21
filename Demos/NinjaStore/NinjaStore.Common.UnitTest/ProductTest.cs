@@ -88,26 +88,34 @@ namespace NinjaStore.Common.UnitTest
             Assert.IsNull(result);
         }
 
+        [TestMethod]
+        public async Task UpdateProductTest()
+        {
+            const string productId = "1";
+            var product = _productRepository.GetProductById(productId);
+
+            // Assign a random value to the price
+            // update the product.
+            var random = new Random();
+            product.Price = random.NextDouble() * (500.0 - 1.0) + 1.0;
+            await _productRepository.UpdateProduct(product);
+
+            var result = _productRepository.GetProductById(product.Id);
+            Assert.AreEqual(result.Price, product.Price);
+        }
+
         #endregion
 
         #region Private Methods
 
         private async Task InitializeProductRepository()
         {
-            //var docDbSettings = new DocumentDbSettings
-            //{
-            //    AuthKey = "",
-            //    CollectionId = "",
-            //    DatabaseId = "",
-            //    Endpoint = ""
-            //};
-
             var docDbSettings = new DocumentDbSettings
             {
-                AuthKey = "61132mGkvhbtR4xHFaPwHvCQRzSLyitREjB9b9OSs4IFGGiUVFZzIxhFutFmjUr9pvOHL50ZQa69ZHbLwdRaaA==",
-                CollectionId = "ninjastore",
-                DatabaseId = "ninjastore",
-                Endpoint = "https://ninjastoredabarkol.documents.azure.com:443/"
+                AuthKey = "",
+                CollectionId = "",
+                DatabaseId = "",
+                Endpoint = ""
             };
 
             _productRepository = new ProductRepository(docDbSettings);

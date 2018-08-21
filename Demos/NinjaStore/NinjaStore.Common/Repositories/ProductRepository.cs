@@ -80,6 +80,18 @@ namespace NinjaStore.Common.Repositories
                 _documentDbSettings.CollectionId, id));
         }
 
+        public async Task UpdateProduct(Product product)
+        {
+            // Check to see if the product exist
+            var existingProduct = GetProductById(product.Id);
+            if (existingProduct != null)
+            {
+                await _documentClient.UpsertDocumentAsync(
+                    UriFactory.CreateDocumentCollectionUri(_documentDbSettings.DatabaseId, _documentDbSettings.CollectionId),
+                    product);
+            }
+        }
+
         #endregion
 
         #region Properties
