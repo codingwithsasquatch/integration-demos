@@ -64,7 +64,7 @@ namespace NinjaStore.UnitTest
         {
             Order order = orderRepository.GetOrderByOrderId(3);
 
-            Assert.AreEqual(order.Product.ProductId, "3");
+            Assert.AreEqual(order.Product.Id, "3");
 
         }
 
