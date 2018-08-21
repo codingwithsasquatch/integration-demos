@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NinjaStore.Common;
-using NinjaStore.Common.Models;
-using NinjaStore.Common.Repositories;
 
 namespace NinjaStore.UnitTest
 {
@@ -46,42 +43,4 @@ namespace NinjaStore.UnitTest
         }
     }
 
-    [TestClass]
-    public class CommonTest
-    {
-        OrderRepository orderRepository = new OrderRepository();
-
-        [TestMethod]
-        public void TestGetAllOrders()
-        {
-            List<Order> orders = orderRepository.GetAllOrders();
-
-            Assert.AreEqual(orders.Count, 3);
-        }
-
-        [TestMethod]
-        public void GetOrderbyOrderID()
-        {
-            Order order = orderRepository.GetOrderByOrderId(3);
-
-            Assert.AreEqual(order.Product.Id, "3");
-
-        }
-
-        [TestMethod]
-        public void GetOrdersbyProductID()
-        {
-            List<Order> orders = orderRepository.GetOrdersByProductId("1");
-
-            Assert.AreEqual(orders[0].OrderId, 1);
-        }
-
-        [TestMethod]
-        public void GetOrdersbyCustomerID()
-        {
-            List<Order> orders = orderRepository.GetOrdersByCustomerId(2);
-
-            Assert.AreEqual(orders[0].OrderId, 2);
-        }
-    }
     }

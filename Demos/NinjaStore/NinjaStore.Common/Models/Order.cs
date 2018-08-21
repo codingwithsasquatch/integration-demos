@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,7 +9,8 @@ namespace NinjaStore.Common.Models
     {
         #region Properties
 
-        public int OrderId { get; set; }
+        [JsonProperty(PropertyName = "id")]
+        public string OrderId { get; set; }
 
         public Customer Customer { get; set; }
 

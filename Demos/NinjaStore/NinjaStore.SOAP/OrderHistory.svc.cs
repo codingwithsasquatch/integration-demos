@@ -10,24 +10,33 @@ using System.ServiceModel.Web;
 using System.Text;
 using NinjaStore.Common;
 using NinjaStore.Common.Repositories;
+using System.Threading.Tasks;
 
 namespace NinjaStore.SOAP
 {
 
     public class OrderHistory : IOrders
     {
+        OrderRepository repo = null;
+        public Task Initialization { get; private set; }
+
+        public OrderHistory()
+        {
+            Initialization = InitializeAsync();
+            Initialization.Wait();
+        }
+
 
         #region Public Methods
         public List<Order> GetAllOrders()
         {
-            var repo = new OrderRepository();
             return ConvertOrders(repo.GetAllOrders());
 
         }
 
         public Order GetOrderbyOrderID(int OrderId)
         {
-            var repo = new OrderRepository();
+          
             return ConvertOrder(repo.GetOrderByOrderId(OrderId));
 
         }
@@ -41,13 +50,26 @@ namespace NinjaStore.SOAP
 
         public List<Order> GetOrdersbyCustomerID(int CustomerId)
         {
-            var repo = new OrderRepository();
+           
             return ConvertOrders(repo.GetOrdersByCustomerId(customerId: CustomerId));
         }
 
         #endregion
 
         #region Private Methods
+
+        private async Task InitializeAsync()
+        {
+
+            Environment.SetEnvironmentVariable("DocumentDbAuthKey", ConfigurationManager.AppSettings["AuthorizationKey"]);
+            Environment.SetEnvironmentVariable("DocumentDbCollectionId", ConfigurationManager.AppSettings["CollectionId"]);
+            Environment.SetEnvironmentVariable("DocumentDbEndpoint", ConfigurationManager.AppSettings["EndPointUrl"]);
+            Environment.SetEnvironmentVariable("DocumentDbDatabaseId", ConfigurationManager.AppSettings["DatabaseId"]);
+
+            repo = new OrderRepository();
+            await repo.Initialize();
+
+        }
 
         private List<Order> ConvertOrders(List<Common.Models.Order> commonorders)
         {
@@ -65,7 +87,7 @@ namespace NinjaStore.SOAP
         {
             Customer customer = new Customer()
             {
-                CustomerID = commonorder.Customer.CustomerId,
+                CustomerID = Convert.ToInt32(commonorder.Customer.CustomerId),
                 CustomerLocation = commonorder.Customer.CustomerLocation,
                 CustomerName = commonorder.Customer.CustomerName
             };
@@ -79,7 +101,7 @@ namespace NinjaStore.SOAP
 
             Order order = new Order()
             {
-                OrderId = commonorder.OrderId,
+                OrderId = Convert.ToInt32(commonorder.OrderId),
                 Quantity = commonorder.Quantity,
                 Customer = customer,
                 Product = product,
