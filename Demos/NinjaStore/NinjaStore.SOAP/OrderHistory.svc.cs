@@ -72,7 +72,7 @@ namespace NinjaStore.SOAP
 
             Product product = new Product()
             {
-                ProductId = commonorder.Product.ProductId,
+                ProductId = commonorder.Product.Id,
                 ProductName = commonorder.Product.Name,
                 Price = commonorder.Product.Price
             };

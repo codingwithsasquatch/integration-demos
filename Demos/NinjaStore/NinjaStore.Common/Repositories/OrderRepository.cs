@@ -43,17 +43,17 @@ namespace NinjaStore.Common.Repositories
             await CreateDatabaseIfNotExistsAsync();
             await CreateCollectionIfNotExistsAsync();
 
-            var ninjaStar = new Product() { ProductId = "1", Count = 5, Name = "Ninja Stars", Price = 5.99 };
+            var ninjaStar = new Product() { Id = "1", Count = 5, Name = "Ninja Stars", Price = 5.99 };
             var cust1 = new Customer() { CustomerId = 1, CustomerName = "Awesome Dojo", CustomerLocation = "CA" };
             var starOrder = new Order() { OrderId = 1, Quantity = 3, Product=ninjaStar, Customer= cust1 };
             CreateOrderDocumentIfNotExists(starOrder).Wait();
 
-            var sword = new Product() { ProductId = "2", Count = 12, Name = "Sword", Price = 199.99 };
+            var sword = new Product() { Id = "2", Count = 12, Name = "Sword", Price = 199.99 };
             var cust2 = new Customer() { CustomerId = 2, CustomerName = "Best Dojo Ever", CustomerLocation = "IN" };
             var swordOrder = new Order() { OrderId = 2, Quantity = 5, Product = sword, Customer = cust2 };
             CreateOrderDocumentIfNotExists(swordOrder).Wait();
 
-            var nunchucks = new Product() { ProductId = "3", Count = 12, Name = "Nunchucks", Price = 24.79 };
+            var nunchucks = new Product() { Id = "3", Count = 12, Name = "Nunchucks", Price = 24.79 };
             var nunchuckOrder = new Order() { OrderId = 3, Quantity = 5, Product = nunchucks, Customer = cust1 };
             CreateOrderDocumentIfNotExists(nunchuckOrder).Wait();
         }
@@ -76,7 +76,7 @@ namespace NinjaStore.Common.Repositories
         {
             var queryOptions = new FeedOptions { MaxItemCount = -1 };
             var query = _documentClient.CreateDocumentQuery<Order>(this.CollectionUri, queryOptions)
-                .Where(o => o.Product.ProductId.Equals(productId, StringComparison.OrdinalIgnoreCase)).ToList();
+                .Where(o => o.Product.Id.ToLower() == productId.ToLower()).ToList();
             return query.ToList();
         }
 

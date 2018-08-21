@@ -43,13 +43,13 @@ namespace NinjaStore.Common.Repositories
             await CreateDatabaseIfNotExistsAsync();
             await CreateCollectionIfNotExistsAsync();
 
-            var ninjaStar = new Product() { ProductId = "1", Count = 5, Name = "Ninja Stars", Price = 5.99};
+            var ninjaStar = new Product() { Id = "1", Count = 5, Name = "Ninja Stars", Price = 5.99};
             CreateProductDocumentIfNotExists(ninjaStar).Wait();
 
-            var sword = new Product() { ProductId = "2", Count = 12, Name = "Sword", Price = 199.99 };
+            var sword = new Product() { Id = "2", Count = 12, Name = "Sword", Price = 199.99 };
             CreateProductDocumentIfNotExists(sword).Wait();
 
-            var nunchucks = new Product() { ProductId = "3", Count = 12, Name = "Nunchucks", Price = 24.79 };
+            var nunchucks = new Product() { Id = "3", Count = 12, Name = "Nunchucks", Price = 24.79 };
             CreateProductDocumentIfNotExists(nunchucks).Wait();
         }
 
@@ -62,14 +62,16 @@ namespace NinjaStore.Common.Repositories
         public Product GetProductById(string productId)
         {
             var queryOptions = new FeedOptions { MaxItemCount = -1 };
+
             var query = _documentClient.CreateDocumentQuery<Product>(this.CollectionUri, queryOptions)
-                .Where(p => p.ProductId.Equals(productId, StringComparison.OrdinalIgnoreCase)).ToList();
+                .Where(p => p.Id.ToLower() == productId.ToLower()).ToList();
+
             return query.FirstOrDefault();
         }
 
         public async Task CreateProduct(Product product)
         {
-            var documentUri = UriFactory.CreateDocumentUri(_documentDbSettings.DatabaseId, _documentDbSettings.CollectionId, product.ProductId);
+            var documentUri = UriFactory.CreateDocumentUri(_documentDbSettings.DatabaseId, _documentDbSettings.CollectionId, product.Id);
             await _documentClient.CreateDocumentAsync(this.CollectionUri, product);
         }
 
@@ -129,23 +131,9 @@ namespace NinjaStore.Common.Repositories
 
         private async Task CreateProductDocumentIfNotExists(Product product)
         {
-            try
-            {
-                var documentUri = UriFactory.CreateDocumentUri(_documentDbSettings.DatabaseId, _documentDbSettings.CollectionId, product.ProductId);
-                await _documentClient.ReadDocumentAsync(documentUri);
-            }
-            catch (DocumentClientException de)
-            {
-                if (de.StatusCode == HttpStatusCode.NotFound)
-                {
-                    var documentCollectionUri = UriFactory.CreateDocumentCollectionUri(_documentDbSettings.DatabaseId, _documentDbSettings.CollectionId);
-                    await _documentClient.CreateDocumentAsync(documentCollectionUri, product);
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _documentClient.UpsertDocumentAsync(
+                UriFactory.CreateDocumentCollectionUri(_documentDbSettings.DatabaseId, _documentDbSettings.CollectionId),
+                product);
         }
 
         #endregion
