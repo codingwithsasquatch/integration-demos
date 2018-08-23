@@ -49,6 +49,14 @@ namespace NinjaStore.Common.UnitTest
         }
 
         [TestMethod]
+        public void GetProductByIdTest()
+        {
+            var result = _productRepository.GetProductById("2");
+            Assert.IsTrue(result.Count > 0);
+            Assert.IsTrue(result.Id == "2");
+        }
+
+        [TestMethod]
         public async Task CreateProductTest()
         {
             var expected = new Product
