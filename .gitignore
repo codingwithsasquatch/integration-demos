@@ -328,3 +328,4 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+/Demos/NinjaStore/NinjaStore.UnitTest/Connected Services
