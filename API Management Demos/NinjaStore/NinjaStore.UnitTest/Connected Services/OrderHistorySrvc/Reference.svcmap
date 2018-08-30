@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a8341b42-3518-4344-ab23-b4b6b49d39a8" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://ninjastorewcf.azurewebsites.net/OrderHistory.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="OrderHistory.xsd" MetadataType="Schema" ID="f293e95f-6d2f-4cce-b885-dae6044fdca2" SourceId="1" SourceUrl="https://ninjastorewcf.azurewebsites.net/OrderHistory.svc?xsd=xsd2" />
+    <MetadataFile FileName="OrderHistory1.xsd" MetadataType="Schema" ID="7bfc4018-c885-41e0-bdd2-d0c94db89336" SourceId="1" SourceUrl="https://ninjastorewcf.azurewebsites.net/OrderHistory.svc?xsd=xsd0" />
+    <MetadataFile FileName="OrderHistory2.xsd" MetadataType="Schema" ID="8a6153ca-5c47-49da-990f-7d07aa40198d" SourceId="1" SourceUrl="https://ninjastorewcf.azurewebsites.net/OrderHistory.svc?xsd=xsd1" />
+    <MetadataFile FileName="OrderHistory.wsdl" MetadataType="Wsdl" ID="560e6f21-13ac-416a-89e4-d9eaed9b0f78" SourceId="1" SourceUrl="https://ninjastorewcf.azurewebsites.net/OrderHistory.svc?wsdl" />
+    <MetadataFile FileName="OrderHistory.disco" MetadataType="Disco" ID="f85800d6-7892-4090-9885-a19df98281d7" SourceId="1" SourceUrl="https://ninjastorewcf.azurewebsites.net/OrderHistory.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
