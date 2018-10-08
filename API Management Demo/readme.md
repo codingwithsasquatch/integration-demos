@@ -8,3 +8,8 @@ The second API service is an API that submits an order to the Ninja Store's back
 
 The third API uses a WCF service that searches and returns the orders from the Ninja Store database.  The WCF SOAP call will use the SOAP to REST functionality (https://docs.microsoft.com/en-us/azure/api-management/restify-soap-api) within API Management.
 
+# API Management Demo Setup
+
+[Demo Setup](setup.md):  Create Azure Storage Account, CosmosDB, Azure Search
+
+<b>You must go through [API Mangagement Setup](setup.md) at least once before the following demo will work.  API Mangement can take up to an hour to create.</b>
