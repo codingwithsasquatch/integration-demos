@@ -8,7 +8,7 @@ Setup:  Create Azure Storage Account, CosmosDB, Azure Search
 
 1. Click Deploy to Azure button below.
 
-[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fcodingwithsasquatch%2Fintegration-demos%2Fmaster%2FAPI%20Management%20Demo%2Fdeploy.json)
+[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fcodingwithsasquatch%2Fintegration-demos%2Fmaster%2FAPI_Management_Demo%2Fdeploy.json)
 
 1. Fill in the values of the template, giving the resource group a name and location.  Be sure to enter in your email address for the API Management.
 
