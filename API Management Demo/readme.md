@@ -7,3 +7,4 @@ The first API service is an API that creates, updates, deletes and retrieves inf
 The second API service is an API that submits an order to the Ninja Store's backend system.  The API uses a Logic App (https://azure.microsoft.com/en-us/services/logic-apps/) to save the order and then check the inventory level of the product ordered.
 
 The third API uses a WCF service that searches and returns the orders from the Ninja Store database.  The WCF SOAP call will use the SOAP to REST functionality (https://docs.microsoft.com/en-us/azure/api-management/restify-soap-api) within API Management.
+

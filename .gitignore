@@ -330,3 +330,4 @@ ASALocalRun/
 .mfractor/
 /Demos/NinjaStore/NinjaStore.UnitTest/Connected Services
 /Demos/NinjaStore/Products/local.settings.json
+API Management Demo/template.json
